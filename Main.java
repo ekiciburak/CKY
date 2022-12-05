@@ -3,9 +3,9 @@ public class Main {
 	public static void main(String[] args) {
 
 		boolean b;
-	    String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+	    //String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
 	    //String s = "baaba"; // test it with the grammar discussed in the class; see cky.java file
-
+		String s = "aabaababaabaa";
 		cky c = new cky();
 		
 		System.out.printf("input string s: %s", s);

@@ -1,10 +1,11 @@
 public class cky {
-	
-	//grammar G in CNG s.t. L(G) = { a^ib^i | i > 0 }.
+	/*
+	//grammar G in CNF s.t. L(G) = { a^ib^i | i > 0 }.
     String [] S = {"AC", "AB"};
     String [] A = {"a"};
     String [] B = {"b"};
-    String [] C = {"SB"};
+    String [] C = {"SB"};    
+    */
 	
 	/*
     //example discussed in the class
@@ -14,6 +15,13 @@ public class cky {
     String [] C = {"AB", "a"};
     */
 	
+	//grammar G in CNF s.t. L(G) = { x \in {a,b}* | x is palindrome }
+    String [] S = {"CA", "DB", "AA", "BB", "a", "b"};
+    String [] A = {"a"};
+    String [] B = {"b"};
+    String [] C = {"AS"};
+    String [] D = {"BS"};
+
     int size = 50; // have the size larger if the string length is "very" long.
 
     //auxiliary arrays
@@ -55,6 +63,14 @@ public class cky {
     		if(s.equals(C[i]))
     		{
     			ACC[k] = "C";
+    			k++;
+    		}
+    	}
+    	for (int i = 0; i < D.length; i++) 
+    	{
+    		if(s.equals(D[i]))
+    		{
+    			ACC[k] = "D";
     			k++;
     		}
     	}
@@ -113,13 +129,41 @@ public class cky {
         return ACC;
     }
     
-    public String [] clear (String [] s)
+    public void clear (String [] s)
     {
     	int l1 = lenc(s);
     	for (int i = 0; i < l1; i++)
 			s[i] = null;
-    	return s;
     }
+ 
+    public Boolean isIn (String [] s, String e)
+    {
+    	Boolean b = false;
+    	int l = s.length;
+    	for (int i = 0; i < l && s[i] != null; i++) 
+    	{
+    		if (s[i].equals(e))
+    			b = true;
+		}
+    	return b;
+    }
+    
+    public String [] removeDups (String [] s)
+    {
+    	int k = 0;
+    	int l = s.length;
+    	String [] acc = new String[l];
+    	for (int i = 0; s[i] != null; i++) 
+    	{
+    		if(!isIn(acc, s[i]))
+    		{
+    			acc[k] = s[i];
+    			k++;
+    		}
+		}
+    	return acc;
+    }
+    
     
     //CKY parser
     public Boolean ckyAlg (String s)
@@ -129,7 +173,7 @@ public class cky {
         Boolean b = false;
         
         //2-dim array (of strings -> [3-dim indeed]) storing non-terminals generating substrings of s.
-        String [][][] T = new String[index][index][50];
+        String [][][] T = new String[index][index][size];
         
 		for (int i = 0; i < s.length(); i++) {
 			T[i][i+1] = search(Character.toString(s.charAt(i)));
@@ -148,18 +192,17 @@ public class cky {
 				{
 					ACC1 = search(ACC[i]);
 					if(ACC1[0] != null)
-					{
 						ACC2 = append(ACC2, ACC1);
-					}
 				}
-				T[m][m+u] = ACC2.clone();		
+				ACC2 = removeDups(ACC2);
+				T[m][m+u] = ACC2.clone();
 				clear(ACC2);
 				clear(BCC);
 				clear(ACC);
 			}
 		}
 		
-		System.out.printf("list of non-terminals generating s (may contain dups): ");
+		System.out.printf("list of non-terminals generating s: ");
 		for (int m = 0; T[0][l][m] != null; m++)
 		{
 			System.out.printf("%s ", T[0][l][m]);
