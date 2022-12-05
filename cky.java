@@ -13,7 +13,7 @@ public class cky {
 	 * String [] A = {"BA", "a"};
 	 * String [] B = {"CC", "b"};
 	 * String [] C = {"AB", "a"};
-    */
+     */
 	
 	//grammar G in CNF s.t. L(G) = { x \in {a,b}* | x is palindrome }
     String [] S = {"CA", "DB", "AA", "BB", "a", "b"};
@@ -97,7 +97,7 @@ public class cky {
     		{
     			ACC[k] = s1[i].concat(s2[j]);
     			k++;
-			}  			
+		}  			
         }
     	return ACC;
     }
@@ -124,7 +124,7 @@ public class cky {
             		ACC[i] = s2[j];
             		j++;
             	}
-			}      	
+	}      	
         }
         return ACC;
     }
@@ -143,7 +143,7 @@ public class cky {
     	for (int i = 0; i < l && s[i] != null; i++) 
     	{
     		if (s[i].equals(e))
-				b = true;
+			b = true;
 		}
     	return b;
     }
@@ -159,7 +159,7 @@ public class cky {
     		{
     			acc[k] = s[i];
     			k++;
-			}
+		}
 		}
     	return acc;
     }
