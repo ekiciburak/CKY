@@ -1,18 +1,18 @@
 public class cky {
 	/*
-	//grammar G in CNF s.t. L(G) = { a^ib^i | i > 0 }.
-    String [] S = {"AC", "AB"};
-    String [] A = {"a"};
-    String [] B = {"b"};
-    String [] C = {"SB"};    
-    */
+	 * //grammar G in CNF s.t. L(G) = { a^ib^i | i > 0 }.
+	 * String [] S = {"AC", "AB"};
+	 * String [] A = {"a"};
+	 * String [] B = {"b"};
+	 * String [] C = {"SB"};    
+	 */
 	
 	/*
-    //example discussed in the class
-    String [] S = {"AB", "BC"};
-    String [] A = {"BA", "a"};
-    String [] B = {"CC", "b"};
-    String [] C = {"AB", "a"};
+	 * //example discussed in the class
+	 * String [] S = {"AB", "BC"};
+	 * String [] A = {"BA", "a"};
+	 * String [] B = {"CC", "b"};
+	 * String [] C = {"AB", "a"};
     */
 	
 	//grammar G in CNF s.t. L(G) = { x \in {a,b}* | x is palindrome }
@@ -23,7 +23,7 @@ public class cky {
     String [] D = {"BS"};
 
     int size = 50; // have the size larger if the string length is "very" long.
-
+    
     //auxiliary arrays
 	String [] ACC  = new String[20]; 
     String [] ACC1 = new String[20]; 
@@ -96,7 +96,7 @@ public class cky {
     		for (int j = 0; j < l2; j++) 
     		{
     			ACC[k] = s1[i].concat(s2[j]);
-    			k++;	
+    			k++;
 			}  			
         }
     	return ACC;
@@ -124,7 +124,7 @@ public class cky {
             		ACC[i] = s2[j];
             		j++;
             	}
-    		}      	
+			}      	
         }
         return ACC;
     }
@@ -143,7 +143,7 @@ public class cky {
     	for (int i = 0; i < l && s[i] != null; i++) 
     	{
     		if (s[i].equals(e))
-    			b = true;
+				b = true;
 		}
     	return b;
     }
@@ -159,7 +159,7 @@ public class cky {
     		{
     			acc[k] = s[i];
     			k++;
-    		}
+			}
 		}
     	return acc;
     }
