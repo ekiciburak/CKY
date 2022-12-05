@@ -93,11 +93,11 @@ public class cky {
         int k = 0;  
         for (int i = 0; i < l1; i++) 
         {
-    		for (int j = 0; j < l2; j++) 
-    		{
-    			ACC[k] = s1[i].concat(s2[j]);
+    		for (int j = 0; j < l2; j++)
+			{
+				ACC[k] = s1[i].concat(s2[j]);
     			k++;
-		}  			
+			}  			
         }
     	return ACC;
     }
@@ -115,16 +115,16 @@ public class cky {
         	ACC = s1;
         else
         {
-            for (int i = 0; i < l1+l2; i++) 
-            {
-            	if (i < l1)
-            		ACC[i] = s1[i];
-            	else
-            	{
-            		ACC[i] = s2[j];
-            		j++;
-            	}
-	}      	
+            for (int i = 0; i < l1+l2; i++)
+			{
+				if (i < l1)
+				ACC[i] = s1[i];
+				else
+				{
+					ACC[i] = s2[j];
+					j++;
+				}
+			}     	
         }
         return ACC;
     }
@@ -140,10 +140,10 @@ public class cky {
     {
     	Boolean b = false;
     	int l = s.length;
-    	for (int i = 0; i < l && s[i] != null; i++) 
-    	{
+    	for (int i = 0; i < l && s[i] != null; i++)
+		{
     		if (s[i].equals(e))
-			b = true;
+				b = true;
 		}
     	return b;
     }
@@ -153,13 +153,13 @@ public class cky {
     	int k = 0;
     	int l = s.length;
     	String [] acc = new String[l];
-    	for (int i = 0; s[i] != null; i++) 
-    	{
-    		if(!isIn(acc, s[i]))
+    	for (int i = 0; s[i] != null; i++)
+		{
+			if(!isIn(acc, s[i]))
     		{
     			acc[k] = s[i];
     			k++;
-		}
+			}
 		}
     	return acc;
     }
