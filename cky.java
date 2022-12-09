@@ -1,3 +1,11 @@
+import java.util.HashMap;
+import java.io.File;
+import java.util.Scanner;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+
+
 public class cky {
 	/*
 	 * //grammar G in CNF s.t. L(G) = { a^ib^i | i > 0 }.
@@ -13,14 +21,15 @@ public class cky {
 	 * String [] A = {"BA", "a"};
 	 * String [] B = {"CC", "b"};
 	 * String [] C = {"AB", "a"};
-     */
+     
 	
-	//grammar G in CNF s.t. L(G) = { x \in {a,b}* | x is palindrome }
-    String [] S = {"CA", "DB", "AA", "BB", "a", "b"};
-    String [] A = {"a"};
-    String [] B = {"b"};
-    String [] C = {"AS"};
-    String [] D = {"BS"};
+	 //grammar G in CNF s.t. L(G) = { x \in {a,b}* | x is palindrome }
+      String [] S = {"CA", "DB", "AA", "BB", "a", "b"};
+      String [] A = {"a"};
+      String [] B = {"b"};
+      String [] C = {"AS"};
+      String [] D = {"BS"};
+	 */
 
     int size = 50; // have the size larger if the string length is "very" long.
     
@@ -29,51 +38,55 @@ public class cky {
     String [] ACC1 = new String[20]; 
     String [] ACC2 = new String[20]; 
     String [] BCC  = new String[20]; 
+	Map<String, String[]> grammar = new HashMap<String, String[]>();
 
+	public void readGrammar (String path){
+		List <String> lines = new ArrayList <String> ();
+		try{
+			File file = new File(path);
+			Scanner sc = new Scanner(file);
+		while (sc.hasNextLine()){
+			String line = sc.nextLine();
+			lines.add(line);
+		
+		}	
+		for (String line : lines){
+			String[] elem = line.split("->");
+			String key = elem[0].strip().trim();
+			String[] value = elem[1].strip().split("\\|");
+			this.grammar.put(key,value);
+		}
+		for (String key : this.grammar.keySet()){
+			List <String> temp = new ArrayList <String> ();
+			for(String value : this.grammar.get(key)){
+				temp.add(value.strip().trim());
+			}
+			this.grammar.put(key, temp.toArray(new String[temp.size()]));
+		}
+		}
+		catch (Exception e){
+			System.out.println(e);
+		}
+		
+	}
+
+  
     public String[] search (String s)
     {
+
         String [] ACC = new String[size]; 
     	int k = 0;
-    	for (int i = 0; i < S.length; i++) 
-    	{
-    		if(s.equals(S[i]))
-    		{
-    			ACC[k] = "S";
-    			k++;
-    		}
-    	}
-    	for (int i = 0; i < A.length; i++) 
-    	{
-    		if(s.equals(A[i]))
-    		{
-    			ACC[k] = "A";
-    			k++;
-    		}
-    	}
-    	for (int i = 0; i < B.length; i++) 
-    	{
-    		if(s.equals(B[i]))
-    		{
-    			ACC[k] = "B";
-    			k++;
-    		}
-    	}
-    	for (int i = 0; i < C.length; i++) 
-    	{
-    		if(s.equals(C[i]))
-    		{
-    			ACC[k] = "C";
-    			k++;
-    		}
-    	}
-    	for (int i = 0; i < D.length; i++) 
-    	{
-    		if(s.equals(D[i]))
-    		{
-    			ACC[k] = "D";
-    			k++;
-    		}
-    	}
+    	
+		for (Map.Entry<String, String[]> entry : this.grammar.entrySet()) {
+			String key = entry.getKey();
+			String [] values = entry.getValue();
+			for (String value : values){
+				if (s.equals(value)){
+					ACC[k] = key;
+					k++;
+				}
+			}
+		}
 		
 		return ACC;
     }
@@ -166,7 +179,7 @@ public class cky {
     
     
     //CKY parser
-    public Boolean ckyAlg (String s)
+    public Boolean ckyAlg (String s,String path)
     {
         int index = s.length()+1;
         int l = s.length();
@@ -174,7 +187,7 @@ public class cky {
         
         //2-dim array (of strings -> [3-dim indeed]) storing non-terminals generating substrings of s.
         String [][][] T = new String[index][index][size];
-        
+        this.readGrammar(path);
 		for (int i = 0; i < s.length(); i++) {
 			T[i][i+1] = search(Character.toString(s.charAt(i)));
 		}
