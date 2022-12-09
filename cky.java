@@ -153,7 +153,7 @@ public class cky {
     {
     	Boolean b = false;
     	int l = s.length;
-    	for (int i = 0; i < l && s[i] != null; i++)
+    	for (int i = 0; (i < l && s[i] != null && !b); i++)
 		{
     		if (s[i].equals(e))
 				b = true;
