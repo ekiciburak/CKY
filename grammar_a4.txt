@@ -1,0 +1,9 @@
+S -> AV|AB|SB|WY|ZV|BV|ZB|BB|UU|a|b
+U -> b
+V -> SB
+W -> SU
+Y -> US
+Z -> BA
+T -> UA
+K -> SA
+A -> TK|TA|US|a|b

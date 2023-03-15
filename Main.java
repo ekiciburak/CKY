@@ -5,7 +5,7 @@ public class Main {
 		boolean b;
 		//String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"; // test with grammar2.txt file.		
 		//String s = "baaba"; // test it with grammar.txt file. 
-		String s = "aaabaabaabaaa"; // test it with palindrome_grammar.txt file.
+		String s = "baababaab"; // test it with palindrome_grammar.txt file.
 		String path = "palindrome_grammar.txt"; // path to the grammar file that contains production rules.
 		/**
 			The file looks like this:
